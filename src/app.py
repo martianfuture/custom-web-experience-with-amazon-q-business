@@ -13,12 +13,12 @@ utils.retrieve_config_from_agent()
 if "aws_credentials" not in st.session_state:
     st.session_state.aws_credentials = None
 
-st.set_page_config(page_title="Amazon Q Business Custom UI") #HTML title
-st.title("Amazon Q Business Custom UI") #page title
+st.set_page_config(page_title="Amazon Q Business-RBU Bot Custom UI") #HTML title
+st.title("Amazon Q Business-RBU Bot Custom UI") #page title
 
 # Define a function to clear the chat history
 def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Please enter your query regarding FIT products?"}]
     st.session_state.questions = []
     st.session_state.answers = []
     st.session_state.input = ""
@@ -115,7 +115,7 @@ else:
     # If the last message is from the user, generate a response from the Q_backend
     if st.session_state.messages[-1]["role"] != "assistant":
         with st.chat_message("assistant"):
-            with st.spinner("Thinking..."):
+            with st.spinner("thinking..."):
                 placeholder = st.empty()
                 response = utils.get_queue_chain(prompt,st.session_state["conversationId"],
                                                  st.session_state["parentMessageId"],
